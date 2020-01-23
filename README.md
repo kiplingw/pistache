@@ -162,7 +162,7 @@ Some other CMAKE defines:
 
 # Continuous Integration Testing
 
-It is important that all patches pass unit testing. Unfortunately developers make all kinds of changes to their local development environment that can have unintended consequences. This can means sometimes tests on the developer's computer pass when they should not, and other times failing when they should not have. 
+It is important that all patches pass unit testing. Unfortunately developers make all kinds of changes to their local development environment that can have unintended consequences. This can sometimes mean tests on the developer's computer pass when they should not, and other times failing when they should not.
 
 To properly validate that things are working, continuous integration (CI) is required. This means compiling, performing local in-tree unit tests, installing through the system package manager, and finally testing the actually installed build artifacts to ensure they do what the user expects them to do.
 
@@ -176,7 +176,7 @@ On Debian based distributions, `autopkgtest` implements the DEP-8 standard. To c
 $ sudo apt install autopkgtest
 ```
 
-Next create the test image, substituting `eoan` or `amd64` for other releases or architectures:
+Next create the container test image, substituting `eoan` or `amd64` for other releases or architectures:
 ```
 $ autopkgtest-buildvm-ubuntu-cloud -r eoan -a amd64
 ```
