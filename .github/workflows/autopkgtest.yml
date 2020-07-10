@@ -45,7 +45,7 @@ jobs:
       - name: Build source .deb
         run: |
           ./debian/rules get-orig-source
-          dpkg-buildpackage -S -sa -us -uc
+          debuild -S -sa -us -uc
       - name: Collect source .deb artifacts
         run: |
           PISTACHE_VERSION=$(<PISTACHE_VERSION/PISTACHE_VERSION)
@@ -84,7 +84,7 @@ jobs:
           set +e
           PISTACHE_VERSION=$(<PISTACHE_VERSION/PISTACHE_VERSION)
 
-          sudo autopkgtest ./${DEBUILD_SOURCE}/pistache_${PISTACHE_VERSION}_source.changes -- null
+          sudo autopkgtest ./${DEBUILD_SOURCE}/pistache_${PISTACHE_VERSION}.dsc -- null
 
           # autopkgtest exit code 2 signifies skipped tests
           if [ $? -gt 2 ]; then
