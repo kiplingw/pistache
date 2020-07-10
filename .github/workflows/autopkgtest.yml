@@ -38,15 +38,13 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: PISTACHE_VERSION
-      - name: Install build dependencies
+      - name: Build source package
         run: |
           BUILD_DEPS=$(perl -ne 'next if /^#/; $p=(s/^Build-Depends:\s*/ / or (/^ / and $p)); s/,|\n|\([^)]+\)//mg; print if $p' < debian/control)
           sudo apt-get install $BUILD_DEPS
-      - name: Build source .deb
-        run: |
           ./debian/rules get-orig-source
           debuild -S -sa -us -uc
-      - name: Collect source .deb artifacts
+      - name: Collect source package artifacts
         run: |
           PISTACHE_VERSION=$(<PISTACHE_VERSION/PISTACHE_VERSION)
           mkdir ../source
